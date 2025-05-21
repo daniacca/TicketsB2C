@@ -1,6 +1,45 @@
+name: ticketsb2c
+
 services:
   ticketsb2c:
+    container_name: tickets-web-api
+    hostname: tickets-web-api.io
     image: ${DOCKER_REGISTRY-}ticketsb2c
     build:
       context: .
       dockerfile: TicketsB2C/Dockerfile
+    depends_on: 
+      - sqldata
+    networks:
+      - backend
+
+  sqldata:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    hostname: sqlserver.io
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong!Passw0rd"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - backend
+
+  migrations:
+    container_name: migrations
+    image: ${DOCKER_REGISTRY-}migrations
+    build:
+      context: .
+      dockerfile: Migrations/Dockerfile
+    depends_on:
+      - sqldata
+    networks:
+      - backend
+
+networks:
+  backend: {}
+
+volumes:
+  sqlserverdata:

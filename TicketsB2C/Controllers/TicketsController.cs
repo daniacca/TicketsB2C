@@ -7,6 +7,12 @@ namespace TicketsB2C.Controllers
     [Route("api/[controller]")]
     public class TicketsController : Controller
     {
+
+        public TicketsController()
+        {
+            
+        }
+
         // GET: api/Tickets
         [HttpGet]
         public IActionResult GetTickets()
