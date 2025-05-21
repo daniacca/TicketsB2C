@@ -1,0 +1,6 @@
+@TicketsB2C_HostAddress = http://localhost:5258
+
+GET {{TicketsB2C_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

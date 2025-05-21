@@ -1,0 +1,6 @@
+services:
+  ticketsb2c:
+    image: ${DOCKER_REGISTRY-}ticketsb2c
+    build:
+      context: .
+      dockerfile: TicketsB2C/Dockerfile
