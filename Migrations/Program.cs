@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
+using DataAccess.Models;
+using TicketsModel.Data;
 
 static IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
@@ -27,7 +29,8 @@ using (var scope = host.Services.CreateScope())
     {
         try
         {
-            await db.Database.MigrateAsync();
+            db.Database.EnsureCreated();
+            db.Database.Migrate();
             break;
         }
         catch (SqlException ex)
@@ -45,4 +48,3 @@ using (var scope = host.Services.CreateScope())
 }
 
 Console.WriteLine("DB Migration Finish");
-// host.Run();
