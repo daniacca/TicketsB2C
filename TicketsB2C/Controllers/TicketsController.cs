@@ -13,6 +13,7 @@ namespace TicketsB2C.Controllers
 
         private TicketApiOutput Map(Ticket t) => new TicketApiOutput
         {
+            TicketId = t.Id,
             Departure = t.Departure.Name,
             Destination = t.Destination.Name,
             Type = $"{t.Type}",
@@ -47,6 +48,28 @@ namespace TicketsB2C.Controllers
         {
             var tickets = await _tickets.SearchTicketsAsync(departureCity, destinationCity);
             return Ok(tickets.Select(Map));
+        }
+
+        // POST: api/Tickets/buy
+        [HttpPost("buy")]
+        public async Task<IActionResult> BuyTicket([FromBody] BuyTicketRequest request)
+        {
+            if (request.Quantity <= 0)
+                return BadRequest(new { Message = "La quantità deve essere maggiore di zero." });
+
+            var ticket = await _tickets.GetByIdAsync(request.TicketId);
+            if (ticket == null)
+                return NotFound(new { Message = "Biglietto non trovato." });
+
+            var summary = new BuyTicketSummary
+            {
+                TicketId = ticket.Id,
+                Quantity = request.Quantity,
+                UnitPrice = ticket.Price,
+                TotalAmount = ticket.Price * request.Quantity,
+            };
+
+            return Ok(summary);
         }
     }
 }
