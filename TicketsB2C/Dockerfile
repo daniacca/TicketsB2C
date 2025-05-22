@@ -13,6 +13,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["TicketsB2C/TicketsB2C.csproj", "TicketsB2C/"]
+COPY ["TicketsModel/TicketsModel.csproj", "TicketsModel/"]
+COPY ["TicketsB2C.Services/TicketsB2C.Services.csproj", "TicketsB2C.Services/"]
 RUN dotnet restore "./TicketsB2C/TicketsB2C.csproj"
 COPY . .
 WORKDIR "/src/TicketsB2C"
