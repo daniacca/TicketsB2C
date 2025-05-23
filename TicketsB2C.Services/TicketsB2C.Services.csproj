@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\TicketsModel.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\TicketsB2C.Model.csproj" />
   </ItemGroup>
 
 </Project>

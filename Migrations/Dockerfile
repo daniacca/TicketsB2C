@@ -11,7 +11,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Migrations/Migrations.csproj", "Migrations/"]
-COPY ["TicketsModel/TicketsModel.csproj", "TicketsModel/"]
+COPY ["TicketsModel/TicketsB2C.Model.csproj", "TicketsModel/"]
 RUN dotnet restore "./Migrations/Migrations.csproj"
 COPY . .
 WORKDIR "/src/Migrations"

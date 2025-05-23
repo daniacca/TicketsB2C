@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsB2C", "TicketsB2C\Ti
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsModel", "DataAccess\TicketsModel.csproj", "{31C654A9-0AE3-4B5A-978B-B9B61922D66D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketsB2C.Model", "DataAccess\TicketsB2C.Model.csproj", "{31C654A9-0AE3-4B5A-978B-B9B61922D66D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations", "Migrations\Migrations.csproj", "{05BBC5DD-4504-4EDA-978F-F41D3B5FD076}"
 EndProject

@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\TicketsModel.csproj" />
+    <ProjectReference Include="..\DataAccess\TicketsB2C.Model.csproj" />
   </ItemGroup>
 
 </Project>

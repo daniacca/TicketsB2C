@@ -1,6 +1,7 @@
 ﻿using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using TicketsB2C.DTO;
+using TicketsB2C.Services.Purchase;
 using TicketsB2C.Services.Repository;
 
 namespace TicketsB2C.Controllers
@@ -55,25 +56,29 @@ namespace TicketsB2C.Controllers
 
         // POST: api/Tickets/buy
         [HttpPost("buy")]
-        public async Task<IActionResult> BuyTicket([FromBody] BuyTicketRequest request)
+        public async Task<IActionResult> BuyTicket([FromBody] BuyTicketRequest request, [FromServices] IPurchaseTicketEngine purchaseTicket)
         {
             if (request.Quantity <= 0)
                 return BadRequest(new { Message = "La quantità deve essere maggiore di zero." });
 
-            var ticket = await _tickets.GetByIdAsync(request.TicketId);
-            if (ticket == null)
-                return NotFound(new { Message = "Biglietto non trovato." });
+            var (Success, Message, PurchasedCost, Ticket) = await purchaseTicket.PurchaseTicketAsync(request.TicketId, request.Quantity);
+            
+            if (Ticket is null)
+                return NotFound(new { Message });
+
+            if(PurchasedCost is null || !Success)
+                return BadRequest(new { Message });
 
             var summary = new BuyTicketResponse
             {
-                TicketId = ticket.Id,
+                TicketId = Ticket.Id,
                 Quantity = request.Quantity,
-                UnitPrice = ticket.Price,
-                TotalAmount = ticket.Price * request.Quantity,
-                Departure = ticket.Departure.Name,
-                Destination = ticket.Destination.Name,
-                Type = $"{ticket.Type}",
-                Carrier = ticket.Carrier.Name
+                UnitPrice = Ticket.Price,
+                TotalAmount = PurchasedCost.Value,
+                Departure = Ticket.Departure.Name,
+                Destination = Ticket.Destination.Name,
+                Type = $"{Ticket.Type}",
+                Carrier = Ticket.Carrier.Name
             };
 
             return Ok(summary);
