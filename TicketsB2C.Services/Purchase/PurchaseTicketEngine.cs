@@ -5,7 +5,6 @@ using TicketsB2C.Services.Repository;
 
 namespace TicketsB2C.Services.Purchase
 {
-
     public class PurchaseTicketEngine : IPurchaseTicketEngine
     {
         private readonly ITicketRepository _tickets;
