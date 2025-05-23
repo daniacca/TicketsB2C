@@ -1,4 +1,3 @@
-using Discount.;
 using Discount.DTO;
 using Discount.Services.Discount;
 using Discount.Services.Interfaces;
