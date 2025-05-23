@@ -1,17 +1,10 @@
 ﻿using System.Net.Http.Json;
-using DataAccess.Models;
 using Microsoft.Extensions.Options;
 using TicketsB2C.Services.Configuration;
 using TicketsB2C.Services.Repository;
 
 namespace TicketsB2C.Services.Purchase
 {
-    public record struct BuyTicketResult(bool Success, string Message, double? PurchasedCost, Ticket? Ticket);
-
-    public interface IPurchaseTicketEngine
-    {
-        Task<BuyTicketResult> PurchaseTicketAsync(int ticketId, int quantity);
-    }
 
     public class PurchaseTicketEngine : IPurchaseTicketEngine
     {
