@@ -43,7 +43,7 @@ namespace TicketsB2C.Services.Purchase
             var response = await client.PostAsJsonAsync(discountApiUrl, request);
 
             if (!response.IsSuccessStatusCode)
-                return new BuyTicketResult(false, "Errore nel calcolo dello sconto", null, ticket);
+                return new BuyTicketResult(false, "Discount service error", null, ticket);
 
             var resultObj = await response.Content.ReadFromJsonAsync<DiscountResultDto>();
             var discountedTotal = resultObj?.discountedTotal;
