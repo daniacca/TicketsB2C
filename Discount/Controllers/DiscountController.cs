@@ -20,7 +20,7 @@ namespace Discount.Controllers
         [HttpPost("calculate")]
         public ActionResult<double> Calculate([FromBody] CalculateDiscountRequest request, [FromServices] IDiscountEngine discountEngine)
         {
-            if (request is null)
+            if (request is null || request.Quantity < 0 || request.Total < 0 || request.Price < 0)
                 return BadRequest("Input non valido.");
 
             var discountedTotal = discountEngine.ApplyAll(new PurchasedTicketData(
