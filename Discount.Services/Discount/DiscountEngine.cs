@@ -11,6 +11,12 @@ namespace Discount.Services.Discount
 
         public double ApplyAll(PurchasedTicketData input)
         {
+            if(input is null)
+                throw new ArgumentNullException(nameof(input), "Input cannot be null");
+
+            if (input.TotalCost < 0)
+                throw new ArgumentOutOfRangeException(nameof(input.TotalCost), "Total cost cannot be negative");
+
             double discount = 0;
             var Stack = (double actual, double discount) => actual + discount;
             var Max = (double actual, double discount) => Math.Max(actual, discount);
