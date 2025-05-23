@@ -1,84 +1,84 @@
 ﻿# 🎟️ TicketsB2C
 
-**TicketsB2C** è un'applicazione backend modulare per la gestione di biglietteria B2C, sviluppata in .NET. Il progetto è strutturato per supportare componenti riutilizzabili, test automatizzati e ambienti containerizzati tramite Docker.
+**TicketsB2C** is a modular .NET backend application for B2C ticket management. The project is structured to support reusable components, automated testing, and containerized environments via Docker.
 
-## 📂 Struttura del progetto
+## 📂 Project Structure
 
-- **TicketsB2C**: Applicazione principale.
-- **TicketsB2C.Services**: Servizi core dell'applicazione.
-- **TicketsB2C.Services.Tests**: Test unitari per i servizi core.
-- **Discount**: Modulo per la gestione degli sconti.
-- **Discount.Services**: Logica di business relativa agli sconti.
-- **Discount.Services.Tests**: Test unitari per i servizi di sconto.
-- **DataAccess**: Gestione dell'accesso ai dati e migrazioni.
-- **Migrations**: Script per la gestione delle migrazioni del database.
+- **TicketsB2C**: Main application.
+- **TicketsB2C.Services**: Core business services.
+- **TicketsB2C.Services.Tests**: Unit tests for core services.
+- **Discount**: Discount management module.
+- **Discount.Services**: Business logic related to discounts.
+- **Discount.Services.Tests**: Unit tests for the discount services.
+- **DataAccess**: Data access layer and database migrations.
+- **Migrations**: Scripts for managing database schema changes.
 
-## 🚀 Avvio rapido
+## 🚀 Quick Start
 
-### Prerequisiti
+### Prerequisites
 
 - [.NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-### Clonazione del repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/daniacca/TicketsB2C.git
 cd TicketsB2C
 ````
 
-### Avvio con Docker Compose
+### Run with Docker Compose
 
 ```bash
 docker-compose up --build
 ```
 
-### Esecuzione dei test
+### Run Tests
 
 ```bash
 dotnet test
 ```
 
-## ⚙️ Comandi utili
+## ⚙️ Useful Commands
 
-* **Build dell'applicazione**:
+* **Build the solution**:
 
   ```bash
   dotnet build TicketsB2C.sln
   ```
 
-* **Esecuzione dell'applicazione**:
+* **Run the application**:
 
   ```bash
   dotnet run --project TicketsB2C/TicketsB2C.csproj
   ```
 
-* **Avvio dei container Docker**:
+* **Start Docker containers**:
 
   ```bash
   docker-compose up
   ```
 
-* **Pulizia dei container Docker**:
+* **Stop and remove Docker containers**:
 
   ```bash
   docker-compose down
   ```
 
-## 🧪 Test
+## 🧪 Testing
 
-I test automatizzati sono presenti nei seguenti progetti:
+Automated unit tests are located in:
 
 * `TicketsB2C.Services.Tests`
 * `Discount.Services.Tests`
 
-Per eseguire tutti i test:
+To run all tests:
 
 ```bash
 dotnet test
 ```
 
-## 📄 Licenza
+## 📄 License
 
-Questo progetto è distribuito sotto licenza MIT. Per maggiori dettagli, consultare il file [LICENSE.txt](LICENSE.txt).
+This project is licensed under the MIT License. For more information, see the [LICENSE.txt](LICENSE.txt) file.
