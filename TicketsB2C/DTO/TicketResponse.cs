@@ -1,6 +1,6 @@
 namespace TicketsB2C.DTO
 {
-    public class TicketApiOutput
+    public class TicketResponse
     {
         public int TicketId { get; set; }
         public string Departure { get; set; } = string.Empty;

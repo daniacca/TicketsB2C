@@ -11,7 +11,9 @@ namespace TicketsB2C.Controllers
     {
         private readonly ITicketRepository _tickets;
 
-        private TicketApiOutput Map(Ticket t) => new TicketApiOutput
+        private readonly ILogger<TicketsController> _logger;
+
+        private TicketResponse Map(Ticket t) => new TicketResponse
         {
             TicketId = t.Id,
             Departure = t.Departure.Name,
@@ -21,9 +23,10 @@ namespace TicketsB2C.Controllers
             Carrier = t.Carrier.Name
         };
 
-        public TicketsController(ITicketRepository tickets)
+        public TicketsController(ITicketRepository tickets, ILogger<TicketsController> logger)
         {
             _tickets = tickets;
+            _logger = logger;
         }
 
         // GET: api/Tickets
@@ -61,12 +64,16 @@ namespace TicketsB2C.Controllers
             if (ticket == null)
                 return NotFound(new { Message = "Biglietto non trovato." });
 
-            var summary = new BuyTicketSummary
+            var summary = new BuyTicketResponse
             {
                 TicketId = ticket.Id,
                 Quantity = request.Quantity,
                 UnitPrice = ticket.Price,
                 TotalAmount = ticket.Price * request.Quantity,
+                Departure = ticket.Departure.Name,
+                Destination = ticket.Destination.Name,
+                Type = $"{ticket.Type}",
+                Carrier = ticket.Carrier.Name
             };
 
             return Ok(summary);

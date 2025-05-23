@@ -13,6 +13,16 @@ services:
     networks:
       - backend
 
+  discount:
+    container_name: discount-web-api
+    hostname: discount-web-api.io
+    image: ${DOCKER_REGISTRY-}discount
+    build:
+      context: .
+      dockerfile: Discount/Dockerfile
+    networks:
+      - backend
+
   sqldata:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: sqlserver
