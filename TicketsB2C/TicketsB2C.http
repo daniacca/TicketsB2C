@@ -1,6 +1,25 @@
 @TicketsB2C_HostAddress = http://localhost:5258
 
-GET {{TicketsB2C_HostAddress}}/weatherforecast/
+GET {{Tickets_HostAddress}}/api/Tickets
 Accept: application/json
+
+###
+
+GET {{Tickets_HostAddress}}/api/Tickets/carrier/1
+Accept: application/json
+
+###
+
+GET {{Tickets_HostAddress}}/api/Tickets/search?departureCity=Milano&destinationCity=Roma
+Accept: application/json
+
+###
+
+POST {{Tickets_HostAddress}}/api/Tickets/buy
+Content-Type: application/json
+{
+  "ticketId": 1,
+  "quantity": 2
+}
 
 ###

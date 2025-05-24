@@ -1,6 +1,12 @@
 @Discount_HostAddress = http://localhost:5057
 
-GET {{Discount_HostAddress}}/weatherforecast/
-Accept: application/json
+POST {{Discount_HostAddress}}/api/Discount/calculate
+Content-Type: application/json
+{
+  "quantity": 2,
+  "price": 50.0,
+  "total": 100.0,
+  "type": "standard"
+}
 
 ###
