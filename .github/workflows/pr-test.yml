@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
+    branches:
+      - "master"
+      - "develop"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Execute Test
+        run: dotnet build && bash .github/runtests.sh
